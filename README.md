@@ -1,4 +1,4 @@
-![It_is_Sunny](Repo_img/...)
+<div style="text-align:center"><img src="..." /></div>.
 
 This project is a...
 
