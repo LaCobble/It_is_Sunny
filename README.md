@@ -1,7 +1,7 @@
 # Is it Sunny?
 
 <p align="center">
-<img src="https://github.com/LaCobble/It_is_Sunny/assets/71151090/6b2f8dec-16f7-4ec5-a965-0016326dd001"/>
+<img src="https://github.com/LaCobble/It_is_Sunny/assets/71151090/6b2f8dec-16f7-4ec5-a965-0016326dd001" width=40% height=40%>>
 </p>
 
 This is a simple web application that displays weather information for a specific city. It uses Bootstrap for the design and relies on OpenWeatherMap API to fetch weather data.
