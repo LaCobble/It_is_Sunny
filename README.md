@@ -55,4 +55,7 @@ The design of the web page is based on Bootstrap.
 Weather icons are provided by the Weather Icons project.
 Tooltips are created using Balloon CSS.
 JavaScript libraries used include jQuery and Moment.js.
+
+## Contact
+
 Thank you for using the Is it Sunny? application! If you have any questions or need further assistance, please feel free to contact us.
