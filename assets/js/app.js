@@ -1,7 +1,7 @@
 // Fichier javascript contenant l'appel à l'API OpenWeatherMap et l'affichage des données récupérées
 
-// Clé API OpenWeatherMap
-var API_KEY = "REDACTED_API_KEY";
+// Clé API OpenWeatherMap — remplace par ta propre clé (https://openweathermap.org/api)
+var API_KEY = "YOUR_OPENWEATHERMAP_API_KEY";
 
 // démarrage de l'application
 $(document).ready(function(){
