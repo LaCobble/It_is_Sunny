@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Demo mode: without an API key, the page shows a sample forecast (flagged "demo data") instead of an empty page.
 - Portfolio README, MIT license, contributing guide, code of conduct and security policy.
 - GitHub CI (Linux checks), release workflow, issue and PR templates, Dependabot.
 
