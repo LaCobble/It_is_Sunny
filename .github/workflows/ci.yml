@@ -1,0 +1,60 @@
+# Lightweight checks on every PR, on Linux.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Required files
+        run: |
+          for f in README.md LICENSE CHANGELOG.md SECURITY.md CONTRIBUTING.md CODE_OF_CONDUCT.md; do
+            test -f "$f" || { echo "::error file=$f::$f is missing"; exit 1; }
+          done
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: JavaScript syntax
+        run: git ls-files '*.js' | grep -v '\.min\.js$' | xargs -r -n1 node --check
+
+      - name: HTML parses and local assets exist
+        run: |
+          python3 - <<'PY'
+          import html.parser, pathlib, subprocess, sys
+          bad = 0
+          class P(html.parser.HTMLParser):
+              def __init__(self):
+                  super().__init__(); self.refs = []
+              def handle_starttag(self, tag, attrs):
+                  for k, v in attrs:
+                      if k in ("src", "href") and v and not v.startswith(("http", "//", "#", "mailto:", "data:", "javascript:")) and "{{" not in v:
+                          self.refs.append(v.split("?")[0].split("#")[0])
+          for f in subprocess.check_output(["git", "ls-files", "*.html"], text=True).split():
+              p = P(); p.feed(pathlib.Path(f).read_text(encoding="utf-8"))
+              for ref in p.refs:
+                  if ref and not (pathlib.Path(f).parent / ref).exists():
+                      bad += 1
+                      print(f"::error file={f}::missing local asset {ref}")
+          sys.exit(1 if bad else 0)
+          PY
+
+      - name: Secrets (gitleaks)
+        run: |
+          docker run --rm -v "$PWD:/repo" ghcr.io/gitleaks/gitleaks:v8.21.2 \
+            dir /repo --no-banner --redact
