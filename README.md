@@ -19,11 +19,16 @@ A static web page (HTML, Bootstrap, jQuery) that calls the [OpenWeatherMap](http
 - a geolocation button that loads the weather where you are;
 - a **demo mode**: when no API key is configured, the page shows a sample three-day forecast for Vannes (from `assets/js/demo-data.js`) instead of calling the API.
 
-## Screenshot
+## Screenshots
 
-<img src="docs/images/demo.webp" alt="Is it Sunny? in demo mode" width="700">
+<table>
+  <tr>
+    <td width="70%"><img src="docs/images/demo.webp" alt="Three-day forecast on desktop"><br><sub>Three-day forecast on desktop</sub></td>
+    <td width="30%"><img src="docs/images/mobile.webp" alt="Same page at phone width"><br><sub>Phone width (390 px)</sub></td>
+  </tr>
+</table>
 
-<sub>Rendered locally in demo mode (October 2026): without an API key the page shows sample data, flagged by the "demo data" badge.</sub>
+<sub>Captured with headless Chrome from a local run in demo mode (October 2026): without an API key the page shows sample data, flagged by the "demo data" badge.</sub>
 
 ## Prerequisites
 
