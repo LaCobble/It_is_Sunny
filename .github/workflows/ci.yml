@@ -26,7 +26,7 @@ jobs:
             test -f "$f" || { echo "::error file=$f::$f is missing"; exit 1; }
           done
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 20
 
