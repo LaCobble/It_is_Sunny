@@ -3,6 +3,9 @@
 // Clé API OpenWeatherMap — remplace par ta propre clé (https://openweathermap.org/api)
 var API_KEY = "YOUR_OPENWEATHERMAP_API_KEY";
 
+// Sans clé configurée, l'application affiche des données d'exemple (demo-data.js)
+var DEMO_MODE = !API_KEY || API_KEY === "YOUR_OPENWEATHERMAP_API_KEY";
+
 // démarrage de l'application
 $(document).ready(function(){
 
@@ -99,6 +102,7 @@ $("#geolocation").click(function (event) {
 
 // Fonction de récupération des données météo par ville
 function getMeteoByCity(city, callback){
+    if (DEMO_MODE) { callback(demoForecast(), null); return; }
     $.ajax({
         url: "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&APPID=" + API_KEY,
         success: function(data){
@@ -112,6 +116,7 @@ function getMeteoByCity(city, callback){
 
 // Fonction de récupération des données météo par coordonnées
 function getMeteoByCoordinates(lat, lon, callback){
+    if (DEMO_MODE) { callback(demoForecast(), null); return; }
     $.ajax({
         url: "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&APPID=" + API_KEY,
         success: function(data){
@@ -142,6 +147,9 @@ function displaySunriseSunset(lat, long){
 function displayMeteo(data){
     googleMapCity = "https://www.google.fr/maps/place/" + data.city.coord.lat + "," + data.city.coord.lon;
     $('#meteo-title span').html('Weather in <a href="' + googleMapCity + '" class="text-muted meteo-city" target="_blank">' + data.city.name + ', ' + data.city.country + '</a>');
+    if (DEMO_MODE) {
+        $('#meteo-title span').append(' <small class="badge badge-warning">demo data</small>');
+    }
     var tempMoyenne = 0;
 
     // Affichage des données météo pour les 3 prochains jours
