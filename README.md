@@ -1,61 +1,76 @@
+<p align="center"><img src="assets/img/icon.png" alt="Is it Sunny? icon" width="96"></p>
+
 # Is it Sunny?
 
+A lightweight weather page: current conditions and the next days' forecast for any city, or for where you are.
+
+[![CI](https://github.com/LaCobble/It_is_Sunny/actions/workflows/ci.yml/badge.svg)](https://github.com/LaCobble/It_is_Sunny/actions/workflows/ci.yml)
+![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![JavaScript](https://img.shields.io/badge/JavaScript-jQuery-F7DF1E?logo=javascript&logoColor=black)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-4-7952B3?logo=bootstrap&logoColor=white)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
+## What it does
+
+A static web page (HTML, Bootstrap, jQuery) that calls the [OpenWeatherMap](https://openweathermap.org/api) forecast API and shows:
+
+- temperature, humidity, wind speed, sunrise and sunset for today and the next two days;
+- a search bar to look up any city (the default is Vannes, France);
+- a geolocation button that loads the weather where you are.
+
+## Screenshot
+
 <p align="center">
-<img src="https://github.com/LaCobble/It_is_Sunny/assets/71151090/6b2f8dec-16f7-4ec5-a965-0016326dd001" width=40% height=40%>
+<img src="https://github.com/LaCobble/It_is_Sunny/assets/71151090/6b2f8dec-16f7-4ec5-a965-0016326dd001" alt="Is it Sunny? screenshot" width="60%">
 </p>
 
-This is a simple web application that displays weather information for a specific city. It uses Bootstrap for the design and relies on OpenWeatherMap API to fetch weather data.
+<sub>Screenshot from 2023. The page needs your own API key to display data.</sub>
 
-## Features
+## Prerequisites
 
-Display current weather information for a specific city.
-Show the temperature, humidity, wind speed, sunrise, and sunset time for the current day and the next two days.
-Allow users to search for weather information by entering the city name.
-Provide an option to use geolocation to automatically detect the user's location.
+- A modern web browser
+- A free [OpenWeatherMap API key](https://home.openweathermap.org/users/sign_up)
 
-## Installation
-To run this application locally, follow these steps:
+## Getting started
 
-Clone the repository:
+```bash
+git clone https://github.com/LaCobble/It_is_Sunny.git
+cd It_is_Sunny
+```
 
-```git clone https://github.com/La_Cobble/repository.git```
+1. Open `assets/js/app.js` and replace `YOUR_OPENWEATHERMAP_API_KEY` with your key. **Do not commit your key.**
+2. Open `index.html` in your browser (or serve the folder, e.g. `python3 -m http.server`, which geolocation may require).
 
-Navigate to the project directory:
+There is no build step and no test suite; the CI checks the JavaScript syntax, that every local asset referenced by the HTML exists, and scans for secrets.
 
-```cd repository```
+## Project structure
 
-Open the index.html file in your preferred web browser.
+```
+It_is_Sunny/
+├── index.html
+└── assets/
+    ├── css/        # Bootstrap and custom styles
+    ├── img/        # icon, humidity icon, loader
+    └── js/
+        ├── app.js      # API calls and rendering
+        └── utility.js  # helpers (Kelvin to Celsius, padding, colour conversion)
+```
 
-## Dependencies
+## What it demonstrates
 
-This application requires the following dependencies:
+- Consuming a third-party REST API from the browser with AJAX.
+- Browser geolocation and dynamic DOM updates with jQuery.
+- Date/time handling with Moment.js and sun times with SunCalc.
+- Responsive layout with Bootstrap.
 
-Bootstrap - A popular CSS framework used for styling the web page.
-Weather Icons - A set of weather-related icons used to represent weather conditions.
-Balloon CSS - A lightweight CSS library for creating tooltips.
+## Context
 
-Usage
-
-Open the index.html file in your web browser.
-
-By default, the application displays weather information for the city of Vannes. You can change this by entering a different city name in the search bar and clicking the "Search" button.
-
-To use geolocation, click on the crosshairs icon next to the search bar. This will automatically detect your current location and display the weather information for that location.
+Personal / school web project built in June 2023. Kept as a portfolio piece; no longer actively developed.
 
 ## Contributing
-Contributions are welcome! If you find any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request.
 
-## License
-This project is licensed under the MIT License.
+See [CONTRIBUTING.md](CONTRIBUTING.md) and the [Code of Conduct](CODE_OF_CONDUCT.md). Security issues: [SECURITY.md](SECURITY.md).
 
-## Credits
+## License and credits
 
-This project uses data from the OpenWeatherMap API to fetch weather information.
-The design of the web page is based on Bootstrap.
-Weather icons are provided by the Weather Icons project.
-Tooltips are created using Balloon CSS.
-JavaScript libraries used include jQuery and Moment.js.
-
-## Contact
-
-Thank you for using the Is it Sunny? application! If you have any questions or need further assistance, please feel free to contact us.
+[MIT](LICENSE) © LaCobble. Weather data from [OpenWeatherMap](https://openweathermap.org/). Built with [Bootstrap](https://getbootstrap.com/), [jQuery](https://jquery.com/), [Moment.js](https://momentjs.com/), [SunCalc](https://github.com/mourner/suncalc), [Weather Icons](https://erikflowers.github.io/weather-icons/), [Balloon.css](https://kazzkiq.github.io/balloon.css/) and [Font Awesome](https://fontawesome.com/).
