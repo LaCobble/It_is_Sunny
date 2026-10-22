@@ -16,20 +16,19 @@ A static web page (HTML, Bootstrap, jQuery) that calls the [OpenWeatherMap](http
 
 - temperature, humidity, wind speed, sunrise and sunset for today and the next two days;
 - a search bar to look up any city (the default is Vannes, France);
-- a geolocation button that loads the weather where you are.
+- a geolocation button that loads the weather where you are;
+- a **demo mode**: when no API key is configured, the page shows a sample three-day forecast for Vannes (from `assets/js/demo-data.js`) instead of calling the API.
 
 ## Screenshot
 
-<p align="center">
-<img src="https://github.com/LaCobble/It_is_Sunny/assets/71151090/6b2f8dec-16f7-4ec5-a965-0016326dd001" alt="Is it Sunny? screenshot" width="60%">
-</p>
+<img src="docs/images/demo.webp" alt="Is it Sunny? in demo mode" width="700">
 
-<sub>Screenshot from 2023. The page needs your own API key to display data.</sub>
+<sub>Rendered locally in demo mode (October 2026): without an API key the page shows sample data, flagged by the "demo data" badge.</sub>
 
 ## Prerequisites
 
 - A modern web browser
-- A free [OpenWeatherMap API key](https://home.openweathermap.org/users/sign_up)
+- Optional: a free [OpenWeatherMap API key](https://home.openweathermap.org/users/sign_up) for live data (without it, the page runs in demo mode)
 
 ## Getting started
 
@@ -38,8 +37,8 @@ git clone https://github.com/LaCobble/It_is_Sunny.git
 cd It_is_Sunny
 ```
 
-1. Open `assets/js/app.js` and replace `YOUR_OPENWEATHERMAP_API_KEY` with your key. **Do not commit your key.**
-2. Open `index.html` in your browser (or serve the folder, e.g. `python3 -m http.server`, which geolocation may require).
+1. Open `index.html` to try it right away in demo mode.
+2. For live data, open `assets/js/app.js` and replace `YOUR_OPENWEATHERMAP_API_KEY` with your key. **Do not commit your key.** Then open `index.html` in your browser (or serve the folder, e.g. `python3 -m http.server`, which geolocation may require).
 
 There is no build step and no test suite; the CI checks the JavaScript syntax, that every local asset referenced by the HTML exists, and scans for secrets.
 
@@ -53,6 +52,7 @@ It_is_Sunny/
     ├── img/        # icon, humidity icon, loader
     └── js/
         ├── app.js      # API calls and rendering
+        ├── demo-data.js # sample forecast used in demo mode
         └── utility.js  # helpers (Kelvin to Celsius, padding, colour conversion)
 ```
 
